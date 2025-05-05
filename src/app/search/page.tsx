@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { NavBar } from '@/components/NavBar';
 import { SearchBar } from '@/components/SearchBar';
-import { BookGrid, Book } from '@/components/BookGrid';
+import { BookGrid } from '@/components/BookGrid';
 import { Pagination } from '@/components/ui/pagination';
+import { Book } from '@prisma/client';
 
-export default function SearchResults() {
+function SearchResultsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get('q') || '';
@@ -44,7 +45,6 @@ export default function SearchResults() {
             <p className="text-center text-muted-foreground">No se encontraron libros. Intenta con otra búsqueda.</p>
           )}
         </div>
-
         <Pagination
           currentPage={parseInt(page, 10)}
           totalPages={totalPages}
@@ -53,4 +53,12 @@ export default function SearchResults() {
       </div>
     </div>
   </>)
+}
+
+export default function SearchResults() {
+  return (
+    <Suspense fallback={<div>Estamos buscando en el marquesado...</div>}>
+      <SearchResultsContent />
+    </Suspense>
+  )
 }

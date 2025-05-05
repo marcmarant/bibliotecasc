@@ -2,13 +2,8 @@
 
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
-
-export interface Book {
-  id: string
-  title: string
-  author: string
-  coverUrl: string
-}
+import Image from 'next/image'
+import { Book } from '@prisma/client'
 
 interface BookGridProps {
   books: Book[]
@@ -21,10 +16,12 @@ export const BookGrid = ({ books }: BookGridProps) => {
         <Link href={`/book/${book.id}`} key={book.id}>
           <Card className="h-full hover:shadow-lg transition-shadow duration-200">
             <div className="aspect-[2/3] relative overflow-hidden rounded-t-lg">
-              <img
+              <Image
                 src={`${process.env.NEXT_PUBLIC_SERVER_URL}/assets/cmusantacruz/book_photos/${book.photo}`}
                 alt={book.title}
                 className="object-cover w-full h-full"
+                width={200}
+                height={300}
               />
             </div>
             <div className="p-4">

@@ -3,14 +3,17 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: Request, { params }: { params: { id: string }}) {
-  const id = parseInt(params.id);
-  if (isNaN(id)) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }>}) {
+  const { id } = await params;
+  const numericId = parseInt(id, 10);
+
+  if (isNaN(numericId)) {
     return new NextResponse('Invalid book ID', { status: 400 });
   }
+
   try {
     const book = await prisma.book.findUnique({
-      where: { id }
+      where: { id: numericId },
     });
     console.log('Book details:', book);
     if (!book) {
