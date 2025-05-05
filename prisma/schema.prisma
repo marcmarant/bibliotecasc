@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/**
+ * Modelo que representa la tabla de libros en la base de datos.
+ * @field id - Identificador único del libro .
+ */
+model Book {
+  id           Int      @id
+  title        String   @map("titulo")
+  author       String?  @map("autor")
+  publishedAt  Int?     @map("fecha")
+  genre        String?  @map("genero")
+  publisher    String?  @map("editorial")
+  photo        String   @map("foto")
+  location     String   @map("localizacion")
+  observations String?  @map("observaciones")
+
+  @@map("libro")
+}
