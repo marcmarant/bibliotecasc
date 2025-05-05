@@ -6,7 +6,7 @@ import { NavBar } from '@/components/NavBar';
 import { SearchBar } from '@/components/SearchBar';
 import { BookGrid } from '@/components/BookGrid';
 import { Pagination } from '@/components/ui/pagination';
-import { Book } from '@prisma/client';
+import { Book } from '@/types/prisma';
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();

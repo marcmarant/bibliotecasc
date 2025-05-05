@@ -3,7 +3,7 @@
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Book } from '@prisma/client'
+import { Book } from '@/types/prisma'
 
 interface BookGridProps {
   books: Book[]

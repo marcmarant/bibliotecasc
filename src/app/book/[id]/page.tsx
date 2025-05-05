@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Book } from '@prisma/client';
+import { Book } from '@/types/prisma';
 
 export default function BookDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
