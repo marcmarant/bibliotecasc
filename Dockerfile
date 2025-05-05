@@ -10,6 +10,9 @@ WORKDIR /app
 # Copia los archivos de dependencias (package.json y package-lock.json)
 COPY package.json package-lock.json ./
 
+# Copia el archivo de entorno
+COPY .env .env
+
 # Instala las dependencias
 RUN npm install --legacy-peer-deps
 
