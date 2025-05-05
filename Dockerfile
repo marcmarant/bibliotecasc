@@ -13,6 +13,9 @@ RUN npm install --legacy-peer-deps
 # Copia el resto del código de la aplicación
 COPY . .
 
+# Generar cliente Prisma
+RUN npx prisma generate
+
 # Compila la aplicación para producción
 RUN npm run build
 
