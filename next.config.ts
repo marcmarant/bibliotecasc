@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   images: {
     domains: [ process.env.SERVER_DOMAIN || 'localhost' ],
   },
-  output: 'export'
 };
 
 export default nextConfig;
