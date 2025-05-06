@@ -15,7 +15,7 @@ export default function BookDetails({ params }: { params: Promise<{ id: string }
   useEffect(() => {
     const fetchBook = async () => {
       const baseUrl = window.location.origin;
-      const res = await fetch(`${baseUrl}}/api/book/${id}`, {
+      const res = await fetch(`${baseUrl}/api/book/${id}`, {
         cache: 'no-store',
       });
       if (!res.ok) { // TODO: manejar el error
