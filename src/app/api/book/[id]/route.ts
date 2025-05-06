@@ -15,7 +15,6 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     const book = await prisma.book.findUnique({
       where: { id: numericId },
     });
-    console.log('Book details:', book);
     if (!book) {
       return new NextResponse('Book not found', { status: 404 })
     }

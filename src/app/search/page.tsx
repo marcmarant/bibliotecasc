@@ -18,7 +18,8 @@ function SearchResultsContent() {
 
   useEffect(() => {
     const fetchBook = async () => {
-      const res = await fetch(`http://localhost:3000/api/book/search?title=${query}&page=${page}`, {
+      const baseUrl = window.location.origin;
+      const res = await fetch(`${baseUrl}/api/book/search?title=${query}&page=${page}`, {
         cache: 'no-store',
       });
       const data = await res.json();

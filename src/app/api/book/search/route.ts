@@ -11,10 +11,6 @@ export async function GET(request: Request) {
   const page = parseInt(pageParam || '1', 10);
   const pageSize = 20;
 
-  console.log('Page:', pageParam);
-  console.log('Title Query:', titleQuery);
-  console.log('Page Size:', pageSize);
-
   if (!titleQuery) {
     return NextResponse.json({ error: 'Title query parameter is required' }, { status: 400 });
   }
