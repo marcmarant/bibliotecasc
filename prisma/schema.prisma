@@ -13,6 +13,7 @@ datasource db {
  */
 model Book {
   id           Int      @id
+  isbn         String?  @unique
   title        String   @map("titulo")
   author       String?  @map("autor")
   publishedAt  Int?     @map("fecha")
