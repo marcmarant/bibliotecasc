@@ -10,9 +10,18 @@ import { IoArrowBack } from 'react-icons/io5';
 import { Spinner } from '@/components/ui/spinner';
 import { BookImage } from '@/components/BookImage';
 
+
+type BookWithExtras = Book & {
+  authors?: string[];
+  categories?: string[];
+  publishedDate?: string;
+  pageCount?: number;
+  synopsis?: string;
+};
+
 export default function BookDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [book, setBook] = useState<null | Book>(null);
+  const [book, setBook] = useState<null | BookWithExtras>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -69,17 +78,17 @@ export default function BookDetails({ params }: { params: Promise<{ id: string }
         <div className="flex flex-col space-y-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2 break-words">{book.title}</h1>
-            {/* @ts-ignore - authors from Google API */}
+
             {book.authors && book.authors.length > 0 ? (
               <h2 className="text-xl md:text-2xl text-muted-foreground">
-                {/* @ts-ignore */}
+
                 {book.authors.join(', ')}
               </h2>
             ) : book.author && book.author !== 'NaN' && (
               <h2 className="text-xl md:text-2xl text-muted-foreground">{book.author}</h2>
             )}
 
-            {/* @ts-ignore - categories from Google API */}
+
             {book.categories && book.categories.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-3">
                 {book.categories.map((cat: string, index: number) => (
@@ -95,10 +104,10 @@ export default function BookDetails({ params }: { params: Promise<{ id: string }
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <span className="text-sm font-medium text-muted-foreground block">Año de publicación</span>
-                {/* @ts-ignore - publishedDate from Google API */}
+
                 <span className="text-base font-semibold">{book.publishedDate || book.publishedAt}</span>
               </div>
-              {/* @ts-ignore - pageCount from Google API */}
+
               {book.pageCount && (
                 <div>
                   <span className="text-sm font-medium text-muted-foreground block">Páginas</span>

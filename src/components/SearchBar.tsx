@@ -25,7 +25,7 @@ export const SearchBar = ({ onSearch, initialQuery = '', initialType = 'general'
         <div className="relative shrink-0">
           <select
             value={type}
-            onChange={(e) => setType(e.target.value as any)}
+            onChange={(e) => setType(e.target.value as 'title' | 'author' | 'general')}
             className="h-10 px-3 py-2 bg-background border border-input rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none pr-8 cursor-pointer"
           >
             <option value="general">Todo</option>
